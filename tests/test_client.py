@@ -101,8 +101,8 @@ class ClientTestCase(unittest.TestCase):
             self.assertEqual(result_params.get('api_key'), TEST_API_KEY)
 
             expected_hash = hashlib.md5()
-            expected_hash.update(result_params['timestamp'])
-            expected_hash.update(TEST_API_SECRET)
+            expected_hash.update(result_params['timestamp'].encode('utf-8'))
+            expected_hash.update(TEST_API_SECRET.encode('utf-8'))
             self.assertEqual(result_params['dev_hash'],
                              expected_hash.hexdigest())
 
